@@ -1,27 +1,27 @@
-import express from "express";
 import cors from "cors";
-import connectDB from "./config/db.js";
 import dotenv from "dotenv";
+import express from "express";
+import connectDB from "./config/db.js";
 
 // Import Routes for Governingbody Management
-import governingBodyRoutes from "./routes/admin/governingBody/getAllGB.route.js";
 import uploadGoverningBodyImg from "./routes/admin/governingBody/addGB.route.js";
-import updateGoverningBodyImg from "./routes/admin/governingBody/updateGB.route.js";
 import governingBodyDelete from "./routes/admin/governingBody/deleteGB.route.js";
+import governingBodyRoutes from "./routes/admin/governingBody/getAllGB.route.js";
+import updateGoverningBodyImg from "./routes/admin/governingBody/updateGB.route.js";
 
 // Import Routes for Sliders
-import getAllSlides from "./routes/admin/slider/getAllSliders.route.js";
 import uploadSlider from "./routes/admin/slider/addSlider.route.js";
 import deleteSlider from "./routes/admin/slider/deleteSlider.route.js";
+import getAllSlides from "./routes/admin/slider/getAllSliders.route.js";
 import updateSlider from "./routes/admin/slider/updateSlider.route.js";
 
 // Import Routes for Notice
 import addNotice from "./routes/admin/notice/addNotice.route.js";
+import deleteMarkNotices from "./routes/admin/notice/deleteMarkNotices.route.js";
 import deleteNotice from "./routes/admin/notice/deleteNotice.route.js";
 import getAllNotices from "./routes/admin/notice/getAllNotices.route.js";
-import updateNotice from "./routes/admin/notice/updateNotice.route.js";
-import deleteMarkNotices from "./routes/admin/notice/deleteMarkNotices.route.js";
 import getSingleNotice from "./routes/admin/notice/getSingleNotice.route.js";
+import updateNotice from "./routes/admin/notice/updateNotice.route.js";
 
 // Import Routes for Headline
 import updateHeadline from "./routes/admin/updateHeadline/addUpdateHeadline.route.js";
@@ -44,11 +44,11 @@ import deleteInstituteCode from "./routes/admin/instituteCode/deleteInstituteCod
 import getInstituteCodeDetails from "./routes/admin/instituteCode/getInstituteCode.route.js";
 
 // Import Routes for Gallery Photos
-import getAllImages from "./routes/admin/mediaGallery/getAllImages.route.js";
 import addImage from "./routes/admin/mediaGallery/addImage.route.js";
-import updateImageMeta from "./routes/admin/mediaGallery/updateImage.route.js";
 import deleteImage from "./routes/admin/mediaGallery/deleteImage.route.js";
 import deleteMarkImages from "./routes/admin/mediaGallery/deleteMarkImages.route.js";
+import getAllImages from "./routes/admin/mediaGallery/getAllImages.route.js";
+import updateImageMeta from "./routes/admin/mediaGallery/updateImage.route.js";
 
 // Registration and Login
 import login from "./routes/admin/authentication/login.route.js";
@@ -58,7 +58,9 @@ connectDB();
 
 const app = express();
 
-const allowedOrigin = process.env.CLIENT_ORIGIN || "http://localhost:5173";
+const allowedOrigin = (
+  process.env.CLIENT_ORIGIN || "http://localhost:5173"
+).replace(/\/$/, "");
 app.use(cors({ origin: allowedOrigin }));
 
 app.use(express.json());
