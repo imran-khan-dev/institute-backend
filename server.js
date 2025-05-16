@@ -119,6 +119,11 @@ app.use("/api/delete-mark-images", deleteMarkImages);
 // Registration and Login
 app.use("/api/login", login);
 
+// 404 not found hanlde
+app.use("/api/*", (req, res) => {
+  res.status(404).json({ message: "API route not found" });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
